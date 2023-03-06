@@ -32,7 +32,7 @@ def build_sidebar(conn: Connection):
     input1 = st.sidebar.slider("Input 1", 0, 100)
     input2 = st.sidebar.slider("Input 2", 0, 100)
     if st.sidebar.button("Save to database"):
-        conn.execute(f"INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES("Hugo",dt.now(pytz.timezone(\'Europe/Paris\')),"Nomade",1);")
+        conn.execute(f"INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES('Hugo',dt.now(pytz.timezone(\'Europe/Paris\')),'Nomade',1);")
         conn.commit()
 
 
