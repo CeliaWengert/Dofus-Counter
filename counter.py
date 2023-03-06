@@ -9,8 +9,6 @@ from sqlite3 import Connection
 
 URI_SQLITE_DB = "counter.db"
 
-
-@st.cache(hash_funcs={Connection: id})
 def get_connection(path: str):
     return sqlite3.connect(path, check_same_thread=False)
 
