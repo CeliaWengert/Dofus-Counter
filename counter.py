@@ -11,6 +11,7 @@ if st.button('test'):
     st.write(dt.now())
     
 else:
+    st.write('coinc')
     
 request='CREATE TABLE IF NOT EXISTS inc(Name TEXT NOT NULL, Date TEXT NOT NULL, Challenge_name TEXT, Challenge_count INTEGER, table_constraints) '
 
@@ -50,4 +51,5 @@ if st.button('Incrément'):
     request = 'INSERT into inc(Name,Date,Challenge_Name,Challenge_count) VALUES('Hugo',getCurrentTimeStamp(),'Nomade',1)'
     c.execute(request)
 else:
+    st.write('coinc')
     
