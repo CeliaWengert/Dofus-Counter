@@ -45,6 +45,5 @@ with col1:
 with col2:
   st.markdown(f'<p style="color:#83C9FF;font-size:75px;">{"Dofus incrément"}</p>', unsafe_allow_html=True)
 
-now.strftime("%H:%M:%S")
 
     
