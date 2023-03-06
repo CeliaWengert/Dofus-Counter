@@ -73,6 +73,7 @@ if st.button('Incrément !'):
      
 if st.button('Select all !'):
     df = pd.read_sql_query("SELECT * FROM inc", conn)
+    st.dataframe(df)
 
 
 
