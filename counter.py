@@ -71,7 +71,7 @@ select1=st.selectbox('Selection du noob', ('Antoine','Aurélien','Hugo','Maxime'
 df_chall=pd.read_csv('chall.csv') 
 select2=st.selectbox('Selection du challenge',df_chall)
 
-df
+
 
 #build_sidebar(conn)
 
