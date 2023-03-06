@@ -3,14 +3,6 @@ import streamlit as st
 import sqlite3
 import os
 
-def create_connection():
-    conn = None
-    try:
-        conn = sqlite3.connect("counter.db")
-    except Exception as e:
-        st.write(e)
-
-    return conn
 
 if st.button('Say hello'):
     st.write('Why hello there')
