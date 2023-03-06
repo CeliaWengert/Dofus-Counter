@@ -47,9 +47,4 @@ with col2:
 
 now.strftime("%H:%M:%S")
 
-if st.button('Incrément'):
-    request = 'INSERT into inc(Name,Date,Challenge_Name,Challenge_count) VALUES('Hugo',getCurrentTimeStamp(),'Nomade',1)'
-    c.execute(request)
-else:
-    st.write('coinc')
     
