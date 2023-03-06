@@ -70,6 +70,7 @@ if st.button('Incrément !'):
     request = '''INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES("'''+select1+'''","'''+date+'''","'''+select2+'''",1)'''
     
     conn.execute(request)
+    conn.commit()
      
 if st.button('Select all !'):
     #conn.execute('''SELECT * FROM inc''')
