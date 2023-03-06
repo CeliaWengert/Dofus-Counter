@@ -1,11 +1,23 @@
 import pandas as pd
 import streamlit as st
-import time
+import datetime as dt
 
 import sqlite3
 conn = sqlite3.connect('counter.db')
 c = conn.cursor()
 
+def getCurrentTimeStamp() {
+    SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+    now = dt.now();
+    strDate = sdfDate.format(now);
+    return strDate;
+}
+
+if st.button('test'):
+    st.write(getCurrentTimeStamp())
+    
+else:
+    
 request='CREATE TABLE IF NOT EXISTS inc(Name TEXT NOT NULL, Date TEXT NOT NULL, Challenge_name TEXT, Challenge_count INTEGER, table_constraints) '
 
 c.execute(request)
@@ -38,10 +50,10 @@ with col1:
 with col2:
   st.markdown(f'<p style="color:#83C9FF;font-size:75px;">{"Dofus incrément"}</p>', unsafe_allow_html=True)
 
-
+now.strftime("%H:%M:%S")
 
 if st.button('Incrément'):
-    request = 'INSERT into inc(Name,Date,Challenge_Name,Challenge_count) VALUES('Hugo','Date','Nomade',1)'
+    request = 'INSERT into inc(Name,Date,Challenge_Name,Challenge_count) VALUES('Hugo',getCurrentTimeStamp(),'Nomade',1)'
     c.execute(request)
 else:
     
