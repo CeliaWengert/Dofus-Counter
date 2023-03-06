@@ -9,9 +9,6 @@ from sqlite3 import Connection
 
 URI_SQLITE_DB = "counter.db"
 
-conn = get_connection(URI_SQLITE_DB)
-init_db(conn)
-build_sidebar(conn)
 
 @st.cache(hash_funcs={Connection: id})
 def get_connection(path: str):
@@ -38,6 +35,9 @@ def build_sidebar(conn: Connection):
         conn.execute(f"INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES('Hugo',dt.now(pytz.timezone(\'Europe/Paris\')),'Nomade',1);")
         conn.commit()
 
+conn = get_connection(URI_SQLITE_DB)
+init_db(conn)
+build_sidebar(conn)
 
 st.set_page_config(page_title="Dofus incrément", layout="wide",page_icon = 'ico.png')
 
