@@ -1,9 +1,22 @@
 import pandas as pd
 import streamlit as st
+
+from pathlib import Path
+Path('counter.db').touch()
+
 import sqlite3
-import os
+conn = sqlite3.connect('counter.db')
+c = conn.cursor()
 
+request='CREATE TABLE [IF NOT EXISTS] inc (
+	Name TEXT NOT NULL,
+   	Date TEXT NOT NULL,
+	Challenge_name TEXT DEFAULT '?',
+    challenge_count INTEGER,    
+	table_constraints
+) [WITHOUT ROWID]'
 
+c.execute(request)
 
 st.set_page_config(page_title="Dofus incrément", layout="wide",page_icon = 'ico.png')
 
