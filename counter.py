@@ -18,7 +18,7 @@ def init_db(conn: Connection):
             (
                 Name TEXT NOT NULL,
                 Date TEXT NOT NULL,
-                Challenge_name ,
+                Challenge_name TEXT,
                 Challenge_count INT
             );"""
     )
@@ -76,7 +76,8 @@ select2=st.selectbox('Selection du challenge',df_chall)
 #build_sidebar(conn)
 
 if st.button('Incrément !'):
-    request = '''INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES('''+select1+''','''+str(dt.now(pytz.timezone('Europe/Paris')))+''','''+select2+''',1);'''
+    date=str(dt.now(pytz.timezone('Europe/Paris')))
+    request = '''INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES('''+select1+''','''+date+''','''+select2+''',1);'''
     st.write(request)
     conn.execute(request)
     conn.commit()
