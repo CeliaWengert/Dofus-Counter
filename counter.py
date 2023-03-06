@@ -8,7 +8,7 @@ conn = sqlite3.connect('counter.db')
 c = conn.cursor()
 
 if st.button('test'):
-    st.write(dt.now())
+    st.write(dt.now(time_zone='Europe/Paris'))
     
 else:
     st.write('coinc')
