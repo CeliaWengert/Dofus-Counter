@@ -68,7 +68,7 @@ conn = get_connection(URI_SQLITE_DB)
 init_db(conn)
 
 df=pd.read_csv('chall.csv') 
-st.selectbox(df,label="Selection du challenge")
+st.selectbox(df)
 
 #build_sidebar(conn)
 
