@@ -33,9 +33,7 @@ def build_sidebar(conn: Connection):
         conn.execute(f"INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES('Hugo',dt.now(pytz.timezone(\'Europe/Paris\')),'Nomade',1);")
         conn.commit()
 
-conn = get_connection(URI_SQLITE_DB)
-init_db(conn)
-build_sidebar(conn)
+
 
 st.set_page_config(page_title="Dofus incrément", layout="wide",page_icon = 'ico.png')
 
@@ -64,6 +62,10 @@ with col1:
     
 with col2:
   st.markdown(f'<p style="color:#83C9FF;font-size:75px;">{"Dofus incrément"}</p>', unsafe_allow_html=True)
+
+conn = get_connection(URI_SQLITE_DB)
+init_db(conn)
+build_sidebar(conn)
 
 if st.button('Incrément'):
     request = 'INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES("Hugo",dt.now(pytz.timezone(\'Europe/Paris\')),"Nomade",1);'
