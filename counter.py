@@ -78,7 +78,7 @@ st.bar_chart(chart_data,x="Name",y="Noob_Counter")
 
 pd.read_sql_query("SELECT Count(*) as Chall_Counter, Name from inc group by Challenge_name ", conn)
 fig = px.pie(df, values='Chall_Counter', names='Challenge_name')
-st.plotly_chart(fig)
+st.plotly_chart(fig,use_container_width=True)
 
 pd.read_sql_query("SELECT * from inc ", conn)
 st.dataframe(chart_data)
