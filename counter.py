@@ -1,20 +1,14 @@
 import pandas as pd
 import streamlit as st
 import datetime as dt
+import pytz
 
 import sqlite3
 conn = sqlite3.connect('counter.db')
 c = conn.cursor()
 
-def getCurrentTimeStamp(): 
-    SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-    now = dt.now();
-    strDate = sdfDate.format(now);
-    return strDate
-
-
 if st.button('test'):
-    st.write(getCurrentTimeStamp())
+    st.write(dt.now())
     
 else:
     
