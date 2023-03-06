@@ -18,7 +18,7 @@ def init_db(conn: Connection):
             (
                 Name TEXT NOT NULL,
                 Date TEXT NOT NULL,
-                Challenge_name TEXT,
+                Challenge_name ,
                 Challenge_count INT
             );"""
     )
