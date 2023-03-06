@@ -5,6 +5,7 @@ import pytz
 from pathlib import Path
 import sqlite3
 from sqlite3 import Connection
+import plotly.express as px
 
 
 URI_SQLITE_DB = "counter.db"
@@ -74,6 +75,12 @@ if st.button('Incrément !'):
     
 chart_data = pd.read_sql_query("SELECT Count(*) as Noob_Counter, Name from inc group by Name ", conn)
 st.bar_chart(chart_data,x="Name",y="Noob_Counter")
+
+pd.read_sql_query("SELECT Count(*) as Chall_Counter, Name from inc group by Challenge_name ", conn)
+fig = px.pie(df, values='Chall_Counter', names='Challenge_name')
+st.plotly_chart(fig)
+
+pd.read_sql_query("SELECT * from inc ", conn)
 st.dataframe(chart_data)
 
     
