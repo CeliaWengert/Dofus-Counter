@@ -82,6 +82,10 @@ if st.button('Incrément !'):
     st.write(request)
     conn.execute(request)
     conn.commit()
+    
+    
+ if st.button('Select all !'): 
+    df = pd.read_sql_query("SELECT * FROM inc", conn)
 
 
 
