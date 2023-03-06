@@ -76,8 +76,8 @@ select2=st.selectbox('Selection du challenge',df_chall)
 #build_sidebar(conn)
 
 if st.button('Incrément !'):
-    # datetime(year, month, day, hour, minute, second)
-    date=str(dt.now(pytz.timezone('Europe/Paris')))
+   
+    date=dt.now(pytz.timezone('Europe/Paris')).strftime("%m/%d/%Y, %H:%M:%S.SSS")
     request = '''INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES('''+select1+''','''+date+''','''+select2+''',1);'''
     st.write(request)
     conn.execute(request)
