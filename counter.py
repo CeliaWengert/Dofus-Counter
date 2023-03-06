@@ -42,7 +42,7 @@ with col2:
 
 
 if st.button('Incrément'):
-    request = 'INSERT into inc(Name,Date,Challenge_Name,Challenge_count) VALUES("Hugo",dt.now(pytz.timezone(\'Europe/Paris\')),"Nomade",1)'
+    request = 'INSERT into inc(Name,Date,Challenge_Name,Challenge_count) VALUES("Hugo",dt.now(pytz.timezone(\'Europe/Paris\')),"Nomade",1);'
     c.execute(request)
 else:
     st.write('coinc')
