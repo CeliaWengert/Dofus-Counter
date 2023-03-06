@@ -10,11 +10,8 @@ from sqlite3 import Connection
 URI_SQLITE_DB = "counter.db"
 
 conn = get_connection(URI_SQLITE_DB)
-    init_db(conn)
-
-    build_sidebar(conn)
-    display_data(conn)
-    run_calculator(conn)
+init_db(conn)
+build_sidebar(conn)
 
 
 def init_db(conn: Connection):
