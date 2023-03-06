@@ -25,15 +25,6 @@ def init_db(conn: Connection):
     conn.commit()
 
 
-def build_sidebar(conn: Connection):
-    st.sidebar.header("Configuration")
-    input1 = st.sidebar.slider("Input 1", 0, 100)
-    input2 = st.sidebar.slider("Input 2", 0, 100)
-    if st.sidebar.button("Save to database"):
-        conn.execute(f"INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES ('Hugo',dt.now(pytz.timezone(\'Europe/Paris\')),'Nomade',1);")
-        conn.commit()
-
-
 
 st.set_page_config(page_title="Dofus incrément", layout="wide",page_icon = 'ico.png')
 
@@ -72,16 +63,13 @@ df_chall=pd.read_csv('chall.csv')
 select2=st.selectbox('Selection du challenge',df_chall)
 
 
-
-#build_sidebar(conn)
-
 if st.button('Incrément !'):
    #"YYYY-MM-DD HH:MM:SS.SSS"
     date=dt.now(pytz.timezone('Europe/Paris')).strftime("%Y-%m-%dT%H:%M:%S")
     request = '''INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES("'''+select1+'''","'''+date+'''","'''+select2+'''",1);'''
     st.write(request)
     conn.execute(request)
-    conn.commit()
+
      
 if st.button('Select all !'):
     df = pd.read_sql_query("SELECT * FROM inc", conn)
