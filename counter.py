@@ -63,9 +63,14 @@ with col1:
 with col2:
   st.markdown(f'<p style="color:#83C9FF;font-size:75px;">{"Dofus incrément"}</p>', unsafe_allow_html=True)
 
+#------------------------------------------------------------------------------------------------------------------------------------------------
 conn = get_connection(URI_SQLITE_DB)
 init_db(conn)
-build_sidebar(conn)
+
+df=pd.read_csv('chall.csv') 
+st.selectbox(df,label="Selection du challenge")
+
+#build_sidebar(conn)
 
 if st.button('Incrément'):
     request = 'INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES("Hugo",dt.now(pytz.timezone(\'Europe/Paris\')),"Nomade",1);'
