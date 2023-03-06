@@ -1,5 +1,18 @@
-import time
+import pandas as pd
 import streamlit as st
+import sqlite3
+import os
+
+def create_connection():
+    conn = None
+    try:
+        conn = sqlite3.connect("counter.db")
+    except Exception as e:
+        st.write(e)
+
+    return conn
+
+            
 
 st.set_page_config(page_title="Dofus incrément", layout="wide",page_icon = 'ico.png')
 
