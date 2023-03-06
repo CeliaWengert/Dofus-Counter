@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-import datetime as dt
+from datetime import datetime as dt
 import pytz
 
 import sqlite3
