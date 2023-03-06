@@ -2,16 +2,42 @@ import pandas as pd
 import streamlit as st
 from datetime import datetime as dt
 import pytz
-
+from pathlib import Path
 import sqlite3
-conn = sqlite3.connect('counter.db')
+from sqlite3 import Connection
 
 
-    
-request='CREATE TABLE IF NOT EXISTS inc(Name TEXT NOT NULL, Date TEXT NOT NULL, Challenge_name TEXT, Challenge_count INTEGER, table_constraints) '
+URI_SQLITE_DB = "counter.db"
 
-conn.execute(request)
-conn.commit()
+conn = get_connection(URI_SQLITE_DB)
+    init_db(conn)
+
+    build_sidebar(conn)
+    display_data(conn)
+    run_calculator(conn)
+
+
+def init_db(conn: Connection):
+    conn.execute(
+        """CREATE TABLE IF NOT EXISTS inc
+            (
+                Name TEXT NOT NULL,
+                Date TEXT NOT NULL,
+                Challenge_name TEXT,
+                Challenge_count INT
+            );"""
+    )
+    conn.commit()
+
+
+def build_sidebar(conn: Connection):
+    st.sidebar.header("Configuration")
+    input1 = st.sidebar.slider("Input 1", 0, 100)
+    input2 = st.sidebar.slider("Input 2", 0, 100)
+    if st.sidebar.button("Save to database"):
+        conn.execute(f"INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES("Hugo",dt.now(pytz.timezone(\'Europe/Paris\')),"Nomade",1);")
+        conn.commit()
+
 
 st.set_page_config(page_title="Dofus incrément", layout="wide",page_icon = 'ico.png')
 
