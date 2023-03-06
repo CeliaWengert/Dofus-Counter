@@ -67,14 +67,13 @@ if st.button('Incrément !'):
    #"YYYY-MM-DD HH:MM:SS.SSS"
     date=dt.now(pytz.timezone('Europe/Paris')).strftime("%Y-%m-%dT%H:%M:%S")
     request = '''INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES("'''+select1+'''","'''+date+'''","'''+select2+'''",1)'''
-    st.write(request)
+    
     conn.execute(request)
-
      
 if st.button('Select all !'):
-    df = pd.read_sql_query("SELECT * FROM inc", conn)
+    df = conn.execute('''SELECT * FROM inc''').fectchall()
     st.dataframe(df)
-
+    
 
 
     
