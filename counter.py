@@ -24,6 +24,11 @@ def init_db(conn: Connection):
     )
     conn.commit()
 
+def myFactory(cur):
+    results=cur.fetchall()
+    desc = [item[0] for item in cur.description]
+    Row = collections.namedtuple("Row", desc)
+    return tuple(Row(*row)  for row in results )
 
 
 st.set_page_config(page_title="Dofus incrément", layout="wide",page_icon = 'ico.png')
@@ -56,6 +61,7 @@ with col2:
 
 #------------------------------------------------------------------------------------------------------------------------------------------------
 conn = get_connection(URI_SQLITE_DB)
+cur=conn.cursor()
 init_db(conn)
 
 select1=st.selectbox('Selection du noob', ('Antoine','Aurélien','Hugo','Maxime'))
@@ -71,7 +77,10 @@ if st.button('Incrément !'):
     conn.execute(request)
      
 if st.button('Select all !'):
-    df = conn.execute('''SELECT * FROM inc''').fectchall()
+    conn.execute('''SELECT * FROM inc''')
+    resultats = myFactory(cur)
+    df=pd.DataFrame(resultats)
+    df=df.loc[:, ~df.columns.isin(list_ignored_columns)]
     st.dataframe(df)
     
 
