@@ -68,17 +68,18 @@ conn = get_connection(URI_SQLITE_DB)
 init_db(conn)
 
 select1=st.selectbox('Selection du noob', ('Antoine','Aurélien','Hugo','Maxime'))
-df=pd.read_csv('chall.csv') 
-select2=st.selectbox('Selection du challenge',df)
+df_chall=pd.read_csv('chall.csv') 
+select2=st.selectbox('Selection du challenge',df_chall)
+
+df
 
 #build_sidebar(conn)
 
 if st.button('Incrément'):
-    request = 'INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES("Hugo",dt.now(pytz.timezone(\'Europe/Paris\')),"Nomade",1);'
+    request = 'INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES({select1},dt.now(pytz.timezone(\'Europe/Paris\')),{select2},1);'
     conn.execute(request)
     conn.commit()
-else:
-    st.write('coinc')
+
 
 
     
