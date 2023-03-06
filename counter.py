@@ -24,7 +24,7 @@ col1,col2=st.columns([0.08,2])
 with col1:
     st.markdown('')
     st.markdown('')
-    st.image('ico1.png', use_column_width='auto')
+    st.image('ico.png', use_column_width='auto')
     
 with col2:
   st.markdown(f'<p style="color:#83C9FF;font-size:75px;">{"Dofus incrément"}</p>', unsafe_allow_html=True)
