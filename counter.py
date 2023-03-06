@@ -12,6 +12,10 @@ def create_connection():
 
     return conn
 
+if st.button('Say hello'):
+    st.write('Why hello there')
+else:
+    st.write('Goodbye')
             
 
 st.set_page_config(page_title="Dofus incrément", layout="wide",page_icon = 'ico.png')
