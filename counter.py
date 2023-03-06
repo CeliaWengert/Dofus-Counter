@@ -71,11 +71,10 @@ if st.button('Incrément !'):
     
     conn.execute(request)
     conn.commit()
-     
-if st.button('Select all !'):
-    #conn.execute('''SELECT * FROM inc''')
-    df = pd.read_sql_query("SELECT * from inc", conn)
-    st.dataframe(df)
+    
+    df = pd.read_sql_query("SELECT Count(*) from inc group by Name ", conn)
+    st.bar_chart(chart_data)
+
     
 
 
