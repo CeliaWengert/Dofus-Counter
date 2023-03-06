@@ -72,7 +72,7 @@ if st.button('Incrément !'):
     conn.execute(request)
     conn.commit()
     
-    chart_data = pd.read_sql_query("SELECT Count(*) from inc group by Name ", conn)
+    chart_data = pd.read_sql_query("SELECT Count(*) as Noob_Counter, Name from inc group by Name ", conn)
     st.bar_chart(chart_data)
     st.dataframe(chart_data)
 
