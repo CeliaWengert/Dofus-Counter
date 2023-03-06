@@ -17,3 +17,4 @@ rfc3986==1.4.0
 six==1.15.0
 sniffio==1.1.0
 matplotlib==1.5.1
+plotly==5.3.1
