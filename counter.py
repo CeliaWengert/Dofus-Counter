@@ -5,7 +5,7 @@ import pytz
 from pathlib import Path
 import sqlite3
 from sqlite3 import Connection
-import plotly.express as px
+import plotly.figure_factory as px
 
 
 URI_SQLITE_DB = "counter.db"
