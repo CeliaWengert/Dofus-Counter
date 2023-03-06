@@ -8,7 +8,7 @@ import sqlite3
 conn = sqlite3.connect('counter.db')
 c = conn.cursor()
 
-request='CREATE TABLE [IF NOT EXISTS] inc ( Name TEXT NOT NULL, Date TEXT NOT NULL, Challenge_name TEXT DEFAULT "?", challenge_count INTEGER, table_constraints) [WITHOUT ROWID]'
+request='CREATE TABLE [IF NOT EXISTS] inc.counter( Name TEXT NOT NULL, Date TEXT NOT NULL, Challenge_name TEXT, challenge_count INTEGER, table_constraints) [WITHOUT ROWID]'
 
 c.execute(request)
 
