@@ -13,6 +13,9 @@ conn = get_connection(URI_SQLITE_DB)
 init_db(conn)
 build_sidebar(conn)
 
+@st.cache(hash_funcs={Connection: id})
+def get_connection(path: str):
+    return sqlite3.connect(path, check_same_thread=False)
 
 def init_db(conn: Connection):
     conn.execute(
