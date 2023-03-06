@@ -6,7 +6,7 @@ import sqlite3
 conn = sqlite3.connect('counter.db')
 c = conn.cursor()
 
-request='CREATE TABLE IF NOT EXISTS inc(Name TEXT NOT NULL, Date TEXT NOT NULL, Challenge_name TEXT, challenge_count INTEGER, table_constraints) '
+request='CREATE TABLE IF NOT EXISTS inc(Name TEXT NOT NULL, Date TEXT NOT NULL, Challenge_name TEXT, Challenge_count INTEGER, table_constraints) '
 
 c.execute(request)
 
@@ -38,3 +38,10 @@ with col1:
 with col2:
   st.markdown(f'<p style="color:#83C9FF;font-size:75px;">{"Dofus incrément"}</p>', unsafe_allow_html=True)
 
+
+
+if st.button('Incrément'):
+    request = 'INSERT into inc(Name,Date,Challenge_Name,Challenge_count) VALUES('Hugo','Date','Nomade',1)'
+    c.execute(request)
+else:
+    
