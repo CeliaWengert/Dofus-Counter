@@ -89,20 +89,18 @@ if st.button('Supprimer'):
     conn.execute(request)
     conn.commit()
 
+df=pd.read_sql_query("SELECT * from inc order by ROWID DESC", conn)
 
-hide_table_row_index = """
+hide_dataframe_row_index = """
             <style>
-            thead tr th:first-child {display:none}
-            tbody th {display:none}
+            .row_heading.level0 {display:none}
+            .blank {display:none}
             </style>
             """
 
 
-
-
-df=pd.read_sql_query("SELECT * from inc order by ROWID DESC", conn)
-st.markdown(hide_table_row_index, unsafe_allow_html=True)
-st.table(df,use_container_width=1)
+st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+st.dataframe(df,use_container_width=1)
 
     
 
