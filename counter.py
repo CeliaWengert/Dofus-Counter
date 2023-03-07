@@ -83,7 +83,14 @@ pie_data=pd.read_sql_query("SELECT Count(*) as Chall_Counter, Challenge_name fro
 fig = px.pie(pie_data, values='Chall_Counter', names='Challenge_name')
 st.plotly_chart(fig,use_container_width=True)
 
-df=pd.read_sql_query("SELECT * from inc ", conn)
+inp = st.text_input('ENtrer le numéro d\'une ligne à supprimer', '')
+if st.button('Supprimer'):
+    request = '''DELETE FROM INC WHERE ROWID = ''' + inp
+    conn.execute(request)
+    conn.commit()
+
+
+df=pd.read_sql_query("SELECT * from inc order by ROWID DESC", conn)
 st.dataframe(df)
 
     
