@@ -19,7 +19,7 @@ def get_connection(path: str):
 def init_db(conn: Connection):
     conn.execute(
         """CREATE TABLE IF NOT EXISTS inc
-            (   ROWID,
+            (   ROWID INTEGER PRIMARY KEY,
                 Name TEXT NOT NULL,
                 Date TEXT NOT NULL,
                 Challenge_name TEXT
