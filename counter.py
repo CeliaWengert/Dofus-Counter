@@ -19,11 +19,11 @@ def get_connection(path: str):
 def init_db(conn: Connection):
     conn.execute(
         """CREATE TABLE IF NOT EXISTS inc
-            (
+            (   ROWID,
                 Name TEXT NOT NULL,
                 Date TEXT NOT NULL,
-                Challenge_name TEXT,
-                Challenge_count INT
+                Challenge_name TEXT
+                
             );"""
     )
     conn.commit()
@@ -71,7 +71,7 @@ select2=st.selectbox('Selection du challenge',df_chall)
 if st.button('Incrément !'):
    #"YYYY-MM-DD HH:MM:SS.SSS"
     date=dt.now(pytz.timezone('Europe/Paris')).strftime("%Y-%m-%dT%H:%M:%S")
-    request = '''INSERT INTO inc(Name,Date,Challenge_Name,Challenge_count) VALUES("'''+select1+'''","'''+date+'''","'''+select2+'''",1)'''
+    request = '''INSERT INTO inc(Name,Date,Challenge_Name) VALUES("'''+select1+'''","'''+date+'''","'''+select2+'''")'''
     
     conn.execute(request)
     conn.commit()
