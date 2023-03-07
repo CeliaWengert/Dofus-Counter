@@ -101,7 +101,7 @@ hide_table_row_index = """
 st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
 df=pd.read_sql_query("SELECT * from inc order by ROWID DESC", conn)
-st.dataframe(df,use_container_width=true)
+st.dataframe(df,use_container_width='true')
 
     
 
