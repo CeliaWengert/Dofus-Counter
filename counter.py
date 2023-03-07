@@ -37,7 +37,7 @@ st.markdown(
     .css-15zrgzn {display: none}
     .css-eczf16 {display: none}
     .css-jn99sy {display: none}
-    .css-10trblm {color : #2424cc;}
+    .css-10trblm {color : #0E853F;}
     .css-1yk9tp8 {display: none}
     button[title="View fullscreen"]{visibility: hidden;}
     table
@@ -56,7 +56,7 @@ with col1:
     st.image('ico.png', use_column_width='auto')
     
 with col2:
-  st.markdown(f'<p style="color:#2424cc;font-size:75px;">{"Dofus incrément"}</p>', unsafe_allow_html=True)
+  st.markdown(f'<p style="color:#0E853F;font-size:75px;">{"Dofus incrément"}</p>', unsafe_allow_html=True)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------
 conn = get_connection(URI_SQLITE_DB)
