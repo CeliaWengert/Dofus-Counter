@@ -31,13 +31,13 @@ def init_db(conn: Connection):
 
 
 st.set_page_config(page_title="Dofus incrément", layout="wide",page_icon = 'ico.png')
-
+#83C9FF
 st.markdown(
     """<style>
     .css-15zrgzn {display: none}
     .css-eczf16 {display: none}
     .css-jn99sy {display: none}
-    .css-10trblm {color : #83C9FF;}
+    .css-10trblm {color : #2424cc;}
     .css-1yk9tp8 {display: none}
     button[title="View fullscreen"]{visibility: hidden;}
     table
@@ -56,7 +56,7 @@ with col1:
     st.image('ico.png', use_column_width='auto')
     
 with col2:
-  st.markdown(f'<p style="color:#83C9FF;font-size:75px;">{"Dofus incrément"}</p>', unsafe_allow_html=True)
+  st.markdown(f'<p style="color:#2424cc;font-size:75px;">{"Dofus incrément"}</p>', unsafe_allow_html=True)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------
 conn = get_connection(URI_SQLITE_DB)
@@ -91,15 +91,6 @@ if st.button('Supprimer'):
 
 df=pd.read_sql_query("SELECT * from inc order by ROWID DESC", conn)
 
-hide_dataframe_row_index = """
-            <style>
-            .row_heading.level0 {display:none}
-            .blank {display:none}
-            </style>
-            """
-
-
-st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
 st.dataframe(df,use_container_width=1)
 
     
