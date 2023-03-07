@@ -61,7 +61,7 @@ with col2:
 #------------------------------------------------------------------------------------------------------------------------------------------------
 conn = get_connection(URI_SQLITE_DB)
 cur=conn.cursor()
-init_db(conn)
+#init_db(conn)
 
 select1=st.selectbox('Selection du noob', ('Antoine','Aurélien','Hugo','Maxime'))
 df_chall=pd.read_csv('chall.csv') 
@@ -83,15 +83,25 @@ pie_data=pd.read_sql_query("SELECT Count(*) as Chall_Counter, Challenge_name fro
 fig = px.pie(pie_data, values='Chall_Counter', names='Challenge_name')
 st.plotly_chart(fig,use_container_width=True)
 
-inp = st.text_input('ENtrer le numéro d\'une ligne à supprimer', '')
+inp = st.text_input('Entrer le numéro d\'une ligne à supprimer', '')
 if st.button('Supprimer'):
     request = '''DELETE FROM INC WHERE ROWID = ''' + inp
     conn.execute(request)
     conn.commit()
 
 
+hide_table_row_index = """
+            <style>
+            thead tr th:first-child {display:none}
+            tbody th {display:none}
+            </style>
+            """
+
+
+st.markdown(hide_table_row_index, unsafe_allow_html=True)
+
 df=pd.read_sql_query("SELECT * from inc order by ROWID DESC", conn)
-st.dataframe(df)
+st.dataframe(df,use_container_width=true)
 
     
 
