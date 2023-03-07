@@ -9,8 +9,6 @@ import plotly.express as px
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
 
-
-
 URI_SQLITE_DB = "counter.db"
 
 def get_connection(path: str):
