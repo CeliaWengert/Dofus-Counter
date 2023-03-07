@@ -61,7 +61,7 @@ with col2:
 #------------------------------------------------------------------------------------------------------------------------------------------------
 conn = get_connection(URI_SQLITE_DB)
 cur=conn.cursor()
-#init_db(conn)
+init_db(conn)
 
 select1=st.selectbox('Selection du noob', ('Antoine','Aurélien','Hugo','Maxime'))
 df_chall=pd.read_csv('chall.csv') 
