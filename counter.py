@@ -99,7 +99,7 @@ df=pd.read_sql_query("SELECT * from inc order by ROWID DESC", conn)
 st.dataframe(df,use_container_width=1)
 
 if st.button('Save to csv'):
-    df.to_csv(sep=';',index=False)
+    df.to_csv(csvfile,sep=';',index=False)
 
     
 
