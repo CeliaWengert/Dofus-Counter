@@ -95,11 +95,14 @@ if st.button('Supprimer'):
     conn.commit()
 
 df=pd.read_sql_query("SELECT * from inc order by ROWID DESC", conn)
-
+csv = df.to_csv().encode('utf-8')
 st.dataframe(df,use_container_width=1)
-
-if st.button('Save to csv'):
-    df.to_csv(csvfile,sep=';',index=False)
+st.download_button(
+     label="Download data as CSV",
+     data=csv,
+     file_name='bdd.csv',
+     mime='text/csv',
+ )
 
     
 
