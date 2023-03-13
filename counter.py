@@ -10,6 +10,7 @@ import plotly.figure_factory as ff
 import plotly.graph_objects as go
 
 URI_SQLITE_DB = "counter.db"
+csvfile = "bdd.csv"
 
 def get_connection(path: str):
     return sqlite3.connect(path, check_same_thread=False)
@@ -25,6 +26,9 @@ def init_db(conn: Connection):
             );"""
     )
     conn.commit()
+    pandas.read_csv(csvfile).to_sql("inc", conn, if_exists='append', index=False)
+    conn.commit()
+    
 
 
 
@@ -77,11 +81,11 @@ if st.button('Incrément !'):
 chart_data = pd.read_sql_query("SELECT Count(*) as Noob_Counter, Name from inc group by Name ", conn)
 st.bar_chart(chart_data,x="Name",y="Noob_Counter")
 
-pie_data=pd.read_sql_query("SELECT Count(*) as Chall_Counter, Challenge_name from inc group by Challenge_name ", conn)
+pie_data=pd.read_sql_query("""SELECT Count(*) as Chall_Counter, Challenge_name from inc group by Challenge_name Where NOT Challenge_Name='-' """, conn)
 fig = px.pie(pie_data, values='Chall_Counter', names='Challenge_name')
 st.plotly_chart(fig,use_container_width=True)
 
-inp = st.text_input('Entrer le numéro d\'une ligne à supprimer', '')
+inp = st.text_input('Entrer le numéro d\'une ligne à supprimer (ROWID)', '')
 if st.button('Supprimer'):
     request = '''DELETE FROM INC WHERE ROWID = ''' + inp
     conn.execute(request)
