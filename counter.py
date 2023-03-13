@@ -81,7 +81,7 @@ if st.button('Incrément !'):
 chart_data = pd.read_sql_query("SELECT Count(*) as Noob_Counter, Name from inc group by Name ", conn)
 st.bar_chart(chart_data,x="Name",y="Noob_Counter")
 
-pie_data=pd.read_sql_query("""SELECT Count(*) as Chall_Counter, Challenge_name from inc group by Challenge_name Where Challenge_Name <> \'-\' """, conn)
+pie_data=pd.read_sql_query("""SELECT Count(*) as Chall_Counter, Challenge_name from inc Where Challenge_name <> \'-\' group by Challenge_name""", conn)
 fig = px.pie(pie_data, values='Chall_Counter', names='Challenge_name')
 st.plotly_chart(fig,use_container_width=True)
 
