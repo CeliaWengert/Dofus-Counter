@@ -95,7 +95,8 @@ if st.button('Supprimer'):
     conn.commit()
 
 df=pd.read_sql_query("SELECT * from inc order by ROWID DESC", conn)
-csv = df.to_csv(sep=';',index=False)
+
+csv = df.to_csv(sep=';',index=False).encode("UTF-8")
 st.dataframe(df,use_container_width=1)
 st.download_button(
      label="Download data as CSV",
