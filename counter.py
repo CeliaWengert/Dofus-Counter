@@ -78,7 +78,7 @@ if st.button('Incrément !'):
     conn.commit()
 
 #-----Bar Chart-----
-chart_data = pd.read_sql_query("SELECT Count(*) as Noob_Counter, Name, Challenge_name from inc group by Name AND Challenge_name ", conn)
+chart_data = pd.read_sql_query("SELECT Count(*) as Noob_Counter, Name, Challenge_name from inc group by Name, Challenge_name ", conn)
 #st.bar_chart(chart_data,x="Name",y="Noob_Counter")
 st.dataframe(chart_data,use_container_width=1)
 
