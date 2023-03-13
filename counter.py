@@ -68,7 +68,7 @@ select1=st.selectbox('Selection du noob', ('Antoine','Aurélien','Hugo','Maxime'
 df_chall=pd.read_csv('chall.csv') 
 select2=st.selectbox('Selection du challenge',df_chall)
 
-
+#-----INCREMENT-----
 if st.button('Incrément !'):
    #"YYYY-MM-DD HH:MM:SS.SSS"
     date=dt.now(pytz.timezone('Europe/Paris')).strftime("%Y-%m-%d %H:%M:%S")
@@ -76,14 +76,22 @@ if st.button('Incrément !'):
     
     conn.execute(request)
     conn.commit()
-    
-chart_data = pd.read_sql_query("SELECT Count(*) as Noob_Counter, Name from inc group by Name ", conn)
-st.bar_chart(chart_data,x="Name",y="Noob_Counter")
 
+#-----Bar Chart-----
+chart_data = pd.read_sql_query("SELECT Count(*) as Noob_Counter, Name from inc group by Name AND Challenge_name ", conn)
+#st.bar_chart(chart_data,x="Name",y="Noob_Counter")
+st.dataframe(chart_data,use_container_width=1)
+
+fig = px.bar(chart_data, x="Name", y="Noob_Counter", color="Challenge_name")
+st.plotly_chart(fig,use_container_width=True)
+
+
+#-----Pie Chart-----
 pie_data=pd.read_sql_query("""SELECT Count(*) as Chall_Counter, Challenge_name from inc Where Challenge_name <> \'-\' group by Challenge_name""", conn)
 fig = px.pie(pie_data, values='Chall_Counter', names='Challenge_name')
 st.plotly_chart(fig,use_container_width=True)
 
+#-----Del line-----
 inp = st.text_input('Entrer le numéro d\'une ligne à supprimer (ROWID)', '')
 if st.button('Supprimer'):
     request = '''DELETE FROM INC WHERE ROWID = ''' + inp
@@ -93,7 +101,7 @@ if st.button('Supprimer'):
 df=pd.read_sql_query("SELECT * from inc order by ROWID DESC", conn)
 
 
-
+#-----Download csv-----
 csv = df.to_csv(sep=';',index=False).encode("UTF-8")
 st.dataframe(df,use_container_width=1)
 st.download_button(
@@ -102,6 +110,8 @@ st.download_button(
      file_name='bdd.csv',
      mime='text/csv',
  )
+
+#-----Import csv-----
 if st.button('Import csv'):
     df=pd.read_csv(csvfile,delimiter=";")   
     df.to_sql("inc", conn, if_exists='append', index=False)
