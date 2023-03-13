@@ -29,14 +29,14 @@ def init_db(conn: Connection):
     df=pd.read_csv(csvfile,delimiter=";")
     st.dataframe(df,use_container_width=1)
     
-    #df.to_sql("inc", conn, if_exists='append', index=False)
+    df.to_sql("inc", conn, if_exists='append', index=False)
     conn.commit()
     
 
 
 
 st.set_page_config(page_title="Dofus incrément", layout="wide",page_icon = 'ico.png')
-#83C9FF
+
 st.markdown(
     """<style>
     .css-15zrgzn {display: none}
