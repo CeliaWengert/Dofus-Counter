@@ -26,8 +26,8 @@ def init_db(conn: Connection):
             );"""
     )
     conn.commit()
-   # pd.read_csv(csvfile,delimiter=";").to_sql("inc", conn, if_exists='append', index=False)
-   # conn.commit()
+    pd.read_csv(csvfile,delimiter=";").to_sql("inc", conn, if_exists='append')
+    conn.commit()
     
 
 
