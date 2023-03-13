@@ -92,10 +92,7 @@ if st.button('Supprimer'):
 
 df=pd.read_sql_query("SELECT * from inc order by ROWID DESC", conn)
 
-if st.button('Import csv'):
-    df=pd.read_csv(csvfile,delimiter=";")   
-    df.to_sql("inc", conn, if_exists='append', index=False)
-    conn.commit()
+
 
 csv = df.to_csv(sep=';',index=False).encode("UTF-8")
 st.dataframe(df,use_container_width=1)
@@ -105,6 +102,10 @@ st.download_button(
      file_name='bdd.csv',
      mime='text/csv',
  )
+if st.button('Import csv'):
+    df=pd.read_csv(csvfile,delimiter=";")   
+    df.to_sql("inc", conn, if_exists='append', index=False)
+    conn.commit()
 
     
 
